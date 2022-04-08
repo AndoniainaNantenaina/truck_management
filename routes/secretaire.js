@@ -1,14 +1,10 @@
-var express = require('express');
-var secretaireRouter = express.Router();
+const express = require('express');
+const {pageSecretaire, postBC, postGasoil} = require("../controllers/secretaire");
+const secretaireRouter = express.Router();
 
-/* GET users listing. */
-secretaireRouter.get('/', function(req, res, next) {
-  res.render(
-    'secretaire/secretaire.ejs', 
-    {
-      mtitle: 'Truck management', 
-      title: 'Secretaire' 
-    });
-});
+secretaireRouter.get('/', pageSecretaire);
+
+secretaireRouter.post('/bc', postBC);
+secretaireRouter.post('/gasoil', postGasoil);
 
 module.exports = secretaireRouter;

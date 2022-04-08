@@ -1,12 +1,13 @@
-var express = require('express');
+const express = require('express');
 const chauffeurRouter = require('./chauffeur');
 const secretaireRouter = require('./secretaire');
-var router = express.Router();
+const {pageAccueil, addSolde} = require("../controllers/dash");
+const router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Truck management' });
-});
+router.get('/', pageAccueil);
+
+router.post('/postTransfert', addSolde);
 
 router.use('/secretaire', secretaireRouter);
 router.use('/chauffeur', chauffeurRouter);
