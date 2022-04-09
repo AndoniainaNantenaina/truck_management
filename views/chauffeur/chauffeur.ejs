@@ -12,38 +12,45 @@
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><%= mtitle %></a>
+            <a class="navbar-brand" href="/"><%= mtitle %></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/">Acceuil</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/secretaire">Secrétaire</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/chauffeur">Chauffeur</a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/">Acceuil</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/secretaire">Secrétaire</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/chauffeur">Chauffeur</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
     
-    <div class="row" style="padding-left: 20%;">
-        <div class="col-8">
-            <h1>Saisie du mouvement :</h1>
-            <input class="form-control" type="text" name="numCarte" id="numCarte" placeholder="Numéro de carte"><br>
-            <input class="form-control" type="text" name="numTicket" id="numTicket" placeholder="Numéro du ticket (TPE)"><br>
-            <input class="form-control" type="text" name="montant" id="montant" placeholder="Montant (Ar)"><br>
-            <input class="form-control" type="number" name="litrage" id="litrage" placeholder="Litre de carburant"><br>
-            <input class="btn btn-success" type="button" value="Envoyer">
+    <div class="class">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>Envoie informations ticket</h1>
+                    <form action="/chauffeur/postTicket" method="post">
+                        <select class="form-control" name="numCarte" id="numCarte">
+                            <option>Numéro de carte</option>
+                            <% data.cartes.forEach(carte => { %>
+                                <option value="<%= carte.numero_carte %>"><%= carte.numero_carte %></option>
+                            <% }) %>
+                        </select><br>
+                        <input class="form-control" type="text" name="numTicket" id="numTicket" placeholder="Numéro de ticket (TPE)"><br>
+                        <input class="form-control" type="number" name="montant" id="montant" placeholder="Montant (Ar)"><br>
+                        <input class="form-control" type="number" name="litrage" id="litrage" placeholder="Litre de carburant"><br>
+                        <input class="btn btn-success" type="submit" value="Envoyer">
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 

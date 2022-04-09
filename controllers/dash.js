@@ -9,9 +9,12 @@ const pageAccueil = async (req, res) => {
         filles: [],
         camions: [],
         chauffeurs: [],
-        bc: []
+        bc: [],
+        factures: [],
+        tickets: []
     };
     console.log(process.env._HOST);
+
     try {
         const directions = await axios({
             method: 'get',
@@ -33,6 +36,27 @@ const pageAccueil = async (req, res) => {
         data.chauffeurs.forEach(c => {
             data.camions.push(c.camion);
         });
+
+        const bonDeCommandes = await axios({
+            methid: "get",
+            url: process.env._HOST + "/ServiceCustomTruck/bc",
+            dataType: "json"
+        })
+        data.bc = bonDeCommandes.data.bcs.bc;
+
+        const factures = await axios({
+            methid: "get",
+            url: process.env._HOST + "/facture_DataService/facture",
+            dataType: "json"
+        })
+        data.factures = factures.data.factureCollection.facture;
+
+        const tickets = await axios({
+            methid: "get",
+            url: process.env._HOST + "/ticket_DataService/ticket",
+            dataType: "json"
+        })
+        data.tickets = tickets.data.ticketCollection.ticket;
 
         console.log(data)
 
