@@ -34,14 +34,14 @@
     <div class="container">
       <div class="row">
         <div class="col-6">
-          <h1 class="position-relative start-0">Dashboard</h1>
+          <h1 class="d-flex justify-content-start">Dashboard</h1>
         </div>
         <div class="col-6">
-          <h3 class="position-absolute end-0">Solde : <b><%= data.direction.carte.solde %> Ar</b></h3>
+          <h3 class="d-flex justify-content-end">Solde : <b><%= data.direction.carte.solde %> Ar</b></h3>
         </div>
       </div>
-      <div class="row">
-        <div class="col-4">
+      <div class="row mt-4">
+        <div class="col-6">
           <h3>Demandes BC</h3>
           <table class="table table-info table-striped">
             <tr>
@@ -126,8 +126,8 @@
                 <tr>
                   <td><input type="text" class="form-control-plaintext" name="numero" readonly value="<%= f.numero_carte %>"></td>
                   <td><input type="text" class="form-control-plaintext" name="solde" readonly value="<%= f.solde %>"></td>
-                  <td><input class="form-control" type="number" placeholder="Solde (Ar)" name="addSolde" required></td>
-                  <td><input class="btn btn-primary" type="submit" value="Ajouter"></td>
+                  <td><input class="form-control" type="number" placeholder="Solde (Ar)" name="addSolde" min="0" required></td>
+                  <td><input class="btn btn-primary" type="submit" value="Transférer"></td>
                 </tr>
               </form>
             <% }) %>
