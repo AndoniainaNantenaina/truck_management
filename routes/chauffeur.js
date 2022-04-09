@@ -1,14 +1,10 @@
-var express = require('express');
-var chauffeurRouter = express.Router();
+const express = require('express');
+const {pageChauffeur, postTicket} = require("../controllers/chauffeur");
+const chauffeurRouter = express.Router();
 
 /* GET users listing. */
-chauffeurRouter.get('/', function(req, res, next) {
-    res.render(
-        'chauffeur/chauffeur.ejs', 
-        { 
-            mtitle: 'Truck management', 
-            title: 'Chauffeur' 
-        });
-});
+chauffeurRouter.get('/', pageChauffeur);
+
+chauffeurRouter.post('/postTicket', postTicket);
 
 module.exports = chauffeurRouter;

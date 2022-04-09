@@ -25,164 +25,130 @@
             </li>
           </ul>
           <form class="d-flex">
-            <p>Direction : <b>Nils</b> VAN HAERINGEN</p>
+            <p>Direction : <%= data.direction.nom %></p>
           </form>
         </div>
       </div>
     </nav>
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-6">
           <h1 class="d-flex justify-content-start">Dashboard</h1>
         </div>
         <div class="col-6">
-          <h3 class="d-flex justify-content-end">Solde : <b>1000000 Ar</b></h3>
+          <h3 class="d-flex justify-content-end">Solde : <b><%= data.direction.carte.solde %> Ar</b></h3>
         </div>
       </div>
-      <div class="row mt-3">
-        <div class="col-6">
+      <div class="row mt-4">
+        <div class="col-4">
           <h3>Demandes BC</h3>
           <table class="table table-info table-striped">
             <tr>
-              <td>#</td>
-              <td>Numéro de BC</td>
-              <td>Date de BC</td>
-              <td>Action</td>
+              <th>#</th>
+              <th>Numéro facture</th>
+              <th>Date</th>
+              <th>Litrage</th>
+              <th>Type carburant</th>
+              <th>Action</th>
             </tr>
             <tr>
-              <td>1</td>
-              <td>MFA1234</td>
-              <td>080422</td>
-              <td><input class="btn btn-success" type="button" value="Approuver"></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>MFA1234</td>
-              <td>080422</td>
-              <td><input class="btn btn-success" type="button" value="Approuver"></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>MFA1234</td>
-              <td>080422</td>
-              <td><input class="btn btn-success" type="button" value="Approuver"></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>MFA1234</td>
-              <td>080422</td>
-              <td><input class="btn btn-success" type="button" value="Approuver"></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>MFA1234</td>
-              <td>080422</td>
-              <td><input class="btn btn-success" type="button" value="Approuver"></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>MFA1234</td>
-              <td>080422</td>
-              <td><input class="btn btn-success" type="button" value="Approuver"></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>MFA1234</td>
-              <td>080422</td>
-              <td><input class="btn btn-success" type="button" value="Approuver"></td>
-            </tr>
+            <% data.bc.forEach(bc => { %>
+              <tr>
+                <td><%= bc.id %></td>
+                <td><%= bc.numero_facture %></td>
+                <td><%= bc.date %></td>
+                <td><%= bc.litrage %>L</td>
+                <td><%= bc.type_carburant %> Ar</td>
+                <td><input class="btn btn-success" type="button" value="Approuver"></td>
+              </tr>
+            <% }) %>
           </table>
         </div>
+        <div class="col-4">
+          <h3>Liste ticket</h3>
+          <table class="table table-warning table-striped">
+            <thead>
+              <tr>
+                <th>Numéro carte</th>
+                <th>Numéro ticket</th>
+                <th>Montant</th>
+                <th>Litrage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% data.tickets.forEach(ticket => { %>
+                <tr>
+                  <td><%= ticket.numero_carte %></td>
+                  <td><%= ticket.numero_ticket %></td>
+                  <td><%= ticket.montant %></td>
+                  <td><%= ticket.litrage %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
 
-        <div class="col-6">
+          <h3>Liste facture</h3>
+          <table class="table table-secondary table-striped">
+            <thead>
+              <tr>
+                <th>Numéro facture</th>
+                <th>Somme</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% data.factures.forEach(facture => { %>
+                <tr>
+                  <td><%= facture.numero_facture %></td>
+                  <td><%= facture.somme %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-4">
           <h3>Liste camion</h3>
           <table class="table table-dark table-striped">
             <tr>
-              <td>Numéro camion</td>
-              <td>Km total</td>
-              <td>Nb voyage</td>
-              <td>Nb pneu</td>
-              <td>Action</td>
+              <th>Numéro camion</th>
+              <th>Km total</th>
+              <th>Nb voyage</th>
+              <th>Nb pneu</th>
             </tr>
-            <tr>
-              <td>0202TBF</td>
-              <td>250</td>
-              <td>5</td>
-              <td>15</td>
-              <td><input class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" value="Voir"></td>
-            </tr>
-            <tr>
-              <td>0202TBF</td>
-              <td>250</td>
-              <td>5</td>
-              <td>15</td>
-              <td><input class="btn btn-primary" type="button" value="Voir"></td>
-            </tr>
-            <tr>
-              <td>0202TBF</td>
-              <td>250</td>
-              <td>5</td>
-              <td>15</td>
-              <td><input class="btn btn-primary" type="button" value="Voir"></td>
-            </tr>
+            <% data.camions.forEach(c => { %>
+              <tr>
+                <td><%= c.matricule %></td>
+                <td>250</td>
+                <td>5</td>
+                <td>12</td>
+              </tr>
+            <% }) %>
           </table>
 
           <h3>Transfert de solde</h3>
           <table class="table table-primary table-striped">
             <tr>
-              <td>N° carte</td>
-              <td>Balance courant</td>
-              <td>Solde à ajouter</td>
-              <td>Action</td>
-              <td>Balance</td>
+              <th>N° carte</th>
+              <th>Balance</th>
+              <th>Solde à ajouter</th>
+              <th>Action</th>
             </tr>
-            <tr>
-              <td>MFA1234</td>
-              <td>2000000 Ar</td>
-              <td><input class="form-control" type="number" placeholder="Solde (Ar)"></td>
-              <td><input class="btn btn-primary" type="button" value="Ajouter"></td>
-              <td>3600000 Ar</td>
-            </tr>
-            <tr>
-              <td>MFA1234</td>
-              <td>2000000 Ar</td>
-              <td><input class="form-control" type="number" placeholder="Solde (Ar)"></td>
-              <td><input class="btn btn-primary" type="button" value="Ajouter"></td>
-              <td>3600000 Ar</td>
-            </tr>
-            <tr>
-              <td>MFA1234</td>
-              <td>2000000 Ar</td>
-              <td><input class="form-control" type="number" placeholder="Solde (Ar)"></td>
-              <td><input class="btn btn-primary" type="button" value="Ajouter"></td>
-              <td>3600000 Ar</td>
-            </tr>
+            <% data.filles.forEach(f => { %>
+              <form action="/postTransfert" method="post">
+                <input type="hidden" name="id" value="<%= f.id %>">
+                <tr>
+                  <td><input type="text" class="form-control-plaintext" name="numero" readonly value="<%= f.numero_carte %>"></td>
+                  <td><input type="text" class="form-control-plaintext" name="solde" readonly value="<%= f.solde %>"></td>
+                  <td><input class="form-control" type="number" placeholder="Solde (Ar)" name="addSolde" min="0" required></td>
+                  <td><input class="btn btn-primary" type="submit" value="Transférer"></td>
+                </tr>
+              </form>
+            <% }) %>
           </table>
         </div>
       </div>
     </div>
 
-
-    <!-- Modal camion -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Camion</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <h1>Camion 1</h1>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script src="/public/javascripts/jquery.js"></script>
     <script src="/public/javascripts/js/bootstrap.min.js"></script>
   </body>
 </html>
